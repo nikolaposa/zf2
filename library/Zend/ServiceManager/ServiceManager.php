@@ -367,7 +367,7 @@ class ServiceManager implements ServiceLocatorInterface
                 throw new Exception\InvalidArgumentException('$initializer should be callable.');
             }
         }
-        
+
         if ($serviceName) {
             foreach ((array) $serviceName as $sName) {
                 $this->addDelegator(
@@ -390,7 +390,7 @@ class ServiceManager implements ServiceLocatorInterface
                 array_push($this->initializers, $initializer);
             }
         }
-        
+
         return $this;
     }
 
