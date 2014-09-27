@@ -34,6 +34,8 @@ class HelperConfig implements ConfigInterface
         'formcaptchaimage'        => 'Zend\Form\View\Helper\Captcha\Image',
         'captcharecaptcha'        => 'Zend\Form\View\Helper\Captcha\ReCaptcha',
         'formcaptcharecaptcha'    => 'Zend\Form\View\Helper\Captcha\ReCaptcha',
+        'captchariddle'           => 'Zend\Form\View\Helper\Captcha\Riddle',
+        'formcaptchariddle'       => 'Zend\Form\View\Helper\Captcha\Riddle',
         'formcheckbox'            => 'Zend\Form\View\Helper\FormCheckbox',
         'formcollection'          => 'Zend\Form\View\Helper\FormCollection',
         'formcolor'               => 'Zend\Form\View\Helper\FormColor',

@@ -9,17 +9,17 @@
 
 namespace ZendTest\Form\View\Helper\Captcha;
 
-use Zend\Captcha\Dumb as DumbCaptcha;
+use Zend\Captcha\Riddle\Equation as EquationCaptcha;
 use Zend\Form\Element\Captcha as CaptchaElement;
-use Zend\Form\View\Helper\Captcha\Dumb as DumbCaptchaHelper;
+use Zend\Form\View\Helper\Captcha\Riddle as RiddleCaptchaHelper;
 use ZendTest\Form\View\Helper\CommonTestCase;
 
-class DumbTest extends CommonTestCase
+class RiddleTest extends CommonTestCase
 {
     public function setUp()
     {
-        $this->helper  = new DumbCaptchaHelper();
-        $this->captcha = new DumbCaptcha(array(
+        $this->helper  = new RiddleCaptchaHelper();
+        $this->captcha = new EquationCaptcha(array(
             'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
         ));
         parent::setUp();
@@ -61,7 +61,7 @@ class DumbTest extends CommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertContains($this->captcha->getLabel() . ' <b>' . strrev($this->captcha->getWord()) . '</b>' . $this->helper->getSeparator() . '<input', $markup);
+        $this->assertContains($this->captcha->getRiddle() . $this->helper->getSeparator() . '<input', $markup);
     }
 
     public function testCanRenderLabelFollowingInput()
@@ -69,14 +69,13 @@ class DumbTest extends CommonTestCase
         $this->helper->setCaptchaPosition('prepend');
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertContains('>' . $this->captcha->getLabel() . ' <b>' . strrev($this->captcha->getWord()) . '</b>' . $this->helper->getSeparator(), $markup);
+        $this->assertContains('>' . $this->captcha->getRiddle() . $this->helper->getSeparator(), $markup);
     }
 
     public function testSetCaptchaPositionWithNullRaisesException()
     {
         $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
         $this->helper->setCaptchaPosition(null);
-
     }
 
     public function testSetSeparator()
@@ -95,7 +94,7 @@ class DumbTest extends CommonTestCase
         $this->helper->setSeparator('<br />');
         $markup  = $this->helper->render($element);
 
-        $this->assertContains($this->captcha->getLabel() . ' <b>' . strrev($this->captcha->getWord()) . '</b>' . $this->helper->getSeparator() . '<input name="foo&#x5B;id&#x5D;" type="hidden"', $markup);
+        $this->assertContains($this->captcha->getRiddle() . $this->helper->getSeparator() . '<input name="foo&#x5B;id&#x5D;" type="hidden"', $markup);
         $this->assertNotContains($this->helper->getSeparator() . '<input name="foo[input]" type="text"', $markup);
     }
 }

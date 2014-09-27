@@ -7,41 +7,43 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Captcha;
+namespace Zend\Captcha\Riddle;
 
-use Zend\Captcha\Riddle\RiddleInterface;
+use Zend\Captcha\BaseAdapter;
 
 /**
- * Example dumb word-based captcha
- *
- * Note that only rendering is necessary for word-based captcha
-*/
-class Dumb extends AbstractWord implements RiddleInterface
+ * @author Nikola Posa <posa.nikola@gmail.com>
+ */
+abstract class BaseRiddle extends BaseAdapter implements RiddleInterface
 {
     /**
-     * CAPTCHA label
+     * Label, riddle problem.
+     * 
      * @type string
      */
-    protected $label = 'Please type this word backwards %s';
+    protected $label;
 
     /**
-     * Set the label for the CAPTCHA
+     * Set riddle's label.
+     * 
      * @param string $label
      */
     public function setLabel($label)
     {
         $this->label = $label;
+        return $this;
     }
 
     /**
-     * Retrieve the label for the CAPTCHA
+     * Get riddle's label.
+     * 
      * @return string
      */
     public function getLabel()
     {
         return $this->label;
     }
-
+    
     /**
      * Retrieve optional view helper name to use when rendering this captcha
      *
@@ -51,16 +53,4 @@ class Dumb extends AbstractWord implements RiddleInterface
     {
         return 'captcha/riddle';
     }
-
-    /**
-     * @return string
-     */
-    public function getRiddle()
-    {
-        return sprintf(
-            $this->getLabel(),
-            '<b>' . strrev($this->getWord()) . '</b>'
-        );
-    }
-    
 }

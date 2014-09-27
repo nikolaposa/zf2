@@ -37,7 +37,7 @@ class DumbTest extends CommonWordTest
 
     public function testUsesCaptchaDumbAsHelper()
     {
-        $this->assertEquals('captcha/dumb', $this->captcha->getHelperName());
+        $this->assertEquals('captcha/riddle', $this->captcha->getHelperName());
     }
 
     public function testGeneratePopulatesId()
@@ -76,7 +76,7 @@ class DumbTest extends CommonWordTest
      */
     public function testDefaultLabelIsUsedWhenNoAlternateLabelSet()
     {
-        $this->assertEquals('Please type this word backwards', $this->captcha->getLabel());
+        $this->assertEquals('Please type this word backwards %s', $this->captcha->getLabel());
     }
 
     /**

@@ -141,7 +141,7 @@ class FormElementTest extends TestCase
         $element->setCaptcha($captcha);
         $markup = $this->helper->render($element);
 
-        $this->assertContains($captcha->getLabel(), $markup);
+        $this->assertContains($captcha->getRiddle(), $markup);
     }
 
     public function testRendersCsrfAsExpected()

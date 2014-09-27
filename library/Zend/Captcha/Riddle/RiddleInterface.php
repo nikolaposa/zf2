@@ -7,11 +7,17 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Form\View\Helper\Captcha;
+namespace Zend\Captcha\Riddle;
+
+use Zend\Captcha\AdapterInterface;
 
 /**
- * @deprecated
+ * @author Nikola Posa <posa.nikola@gmail.com>
  */
-class Dumb extends Riddle
+interface RiddleInterface extends AdapterInterface
 {
+    /**
+     * @return string
+     */
+    public function getRiddle();
 }
